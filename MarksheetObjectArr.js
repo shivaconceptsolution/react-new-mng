@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Marksheet()
+function MarksheetObjectArr()
 {
     var[a,setA] = useState(undefined)
     var[b,setB] = useState(undefined)
@@ -35,31 +35,32 @@ function Marksheet()
 
     function result(e)
     {
-         var marks=[]
-         var subject= ["PHY", "CHEM","MATH","ENG","HINDI"]
-         marks.push(parseInt(a),parseInt(b),parseInt(c),parseInt(d),parseInt(e1))
-         var totalmarks=0;
+       //  var marks=[]
+         //var subject= ["PHY", "CHEM","MATH","ENG","HINDI"]
+        // marks.push(parseInt(a),parseInt(b),parseInt(c),parseInt(d),parseInt(e1))
+         var marks = {PHY:parseInt(a),CHEM:parseInt(b),MATH:parseInt(c),Eng:parseInt(d),Hindi:parseInt(e1)} 
+        var totalmarks=0;
          var count=0;
          var result1='';
          var grace=0;
          var per=0;
          var dist='';
          var message='';
-         for(var i=0;i<marks.length;i++)
+         for(var key in marks)
          {
-            if(parseInt(marks[i])<0 || parseInt(marks[i])>100 )
+            if(parseInt(marks[key])<0 || parseInt(marks[key])>100 )
             {
                 message = 'Invalid Marks';
                 break
             }
-            if(parseInt(marks[i])<33)
+            if(parseInt(marks[key])<33)
             {
-                grace=parseInt(marks[i]);
+                grace=parseInt(marks[key]);
                 count++;
             }
-            if(parseInt(marks[i])>=75)
+            if(parseInt(marks[key])>=75)
             {
-                dist+=subject[i]+ " ";
+                dist+=key+ " ";
             }
            }
            if(message=='')
@@ -67,7 +68,7 @@ function Marksheet()
             if(count==0 ||  count==1 && grace>=28)
             {
                result1 = 'Pass';
-               totalmarks+=parseInt(marks[i])
+               totalmarks+=parseInt(marks[key])
                per= totalmarks/5
                if(per>=33 && per<45)
                {
@@ -126,4 +127,4 @@ function Marksheet()
         {res}
     </div>)
 }
-export default Marksheet;
+export default MarksheetObjectArr;
